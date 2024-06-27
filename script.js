@@ -2,11 +2,18 @@
 //                             CONSTANTS                                      //
 ////////////////////////////////////////////////////////////////////////////////
 
-const SCRIPT_ARRAY = [
-    chrome.runtime.getURL('handleCode.js'),
-    chrome.runtime.getURL('js/jszip.min.js'),
-    chrome.runtime.getURL('js/FileSaver.js')
-]
+const SCRIPT_ARRAY = []
+
+if(navigator.userAgent.indexOf("Firefox") > -1){
+    SCRIPT_ARRAY.push(browser.runtime.getURL('handleCode.js'));
+    SCRIPT_ARRAY.push(browser.runtime.getURL('js/jszip.min.js'));
+    SCRIPT_ARRAY.push(browser.runtime.getURL('js/FileSaver.js'));
+}
+else{
+    SCRIPT_ARRAY.push(chrome.runtime.getURL('handleCode.js'));
+    SCRIPT_ARRAY.push(chrome.runtime.getURL('js/jszip.min.js'));
+    SCRIPT_ARRAY.push(chrome.runtime.getURL('js/FileSaver.js'));
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //                             FUNCTIONS                                      //
